@@ -55,7 +55,6 @@ class Facebook(webdriver.Chrome):
             elif isinstance(class_nms, str):
                 time_list = time_list + block.find_all('div', class_nms)
             time_list = [str(i['data-tooltip-content']) for i in time_list]
-            # TODO: sort times better (now works only per same date)
             time_list = [SP.parse_date_str_to_num(i) for i in time_list]
             return sorted(time_list)
         
@@ -91,9 +90,7 @@ class Facebook(webdriver.Chrome):
     def start_chat_with(self, user_id= None):
         url_chat = "https://www.facebook.com/messages/t/" \
                         +user_id
-                        # + "?cquick=jsc_c_ab&cquick_token=AQ7lKbAy-HunRvVp&ctarget=https%2525252525253A%2525252525252F%2525252525252Fwww.facebook.com"
         print("Loading FB Messengar")
-        # element = WebDriverWait(driver, 10).until(lambda x: x.find_element_by_id(“someId”))
         self.get(url_chat)
         print("Succeed")
         # self.switch_to.frame(0)
@@ -108,8 +105,6 @@ class Facebook(webdriver.Chrome):
         # 
         print("getting input..")
         wait = WebDriverWait(self, 20)
-        
-        self.get('https://www.facebook.com/messages/t/tomer.achler?cquick=jsc_c_d&cquick_token=AQ7qbafhHTaTszrK&ctarget=https%25252525253A%25252525252F%25252525252Fwww.facebook.com')
         input = wait.until(EC.visibility_of_element_located((By.XPATH, i1)))
         # input = self.find_element_by_xpath('//*[@id="placeholder-9q0jo"]')
         print("located")
