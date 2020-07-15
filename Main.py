@@ -93,7 +93,7 @@ class Facebook(webdriver.Chrome):
         print("Loading FB Messengar")
         self.get(url_chat)
         print("Succeed")
-        # self.switch_to.frame(0)
+        self.switch_to.frame(0)
         print("frame changed")
         sleep(5)
         
